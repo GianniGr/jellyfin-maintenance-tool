@@ -8,6 +8,7 @@ class FileRenamerGUI:
         self.root = root
         self.root.title("File Manager")
 
+
         # Variables for folder renaming
         self.folder_path = tk.StringVar()
 
@@ -24,8 +25,9 @@ class FileRenamerGUI:
         self.youtube_link = tk.StringVar()
         self.download_path = tk.StringVar()
         self.youtube_mp3_name = tk.StringVar(value="theme")  # Default name is "theme"
-
+        self.check_var = tk.IntVar()
         self.create_widgets()
+
 
     def create_widgets(self):
         # Main frame
@@ -95,7 +97,7 @@ class FileRenamerGUI:
 
         # Folder creator tab
         self.folder_creator_tab = tk.Frame(self.content_frame)
-        creator_title_label = tk.Label(self.folder_creator_tab, text="Folder Creator", font=("Arial", 14, "bold"))
+        creator_title_label = tk.Label(self.folder_creator_tab, text="Show Creator", font=("Arial", 14, "bold"))
         creator_title_label.grid(row=0, column=0, columnspan=3, pady=10)
 
         base_path_label = tk.Label(self.folder_creator_tab, text="Base Path:")
@@ -107,20 +109,26 @@ class FileRenamerGUI:
         base_browse_button = tk.Button(self.folder_creator_tab, text="Browse...", command=self.select_base_path)
         base_browse_button.grid(row=1, column=2, padx=5, pady=5)
 
-        new_folder_name_label = tk.Label(self.folder_creator_tab, text="New Folder Name:")
-        new_folder_name_label.grid(row=2, column=0, sticky=tk.W)
+        new_folder_name_label = tk.Label(self.folder_creator_tab, text="New Show Name:")
+        new_folder_name_label.grid(row=2, column=0, pady=5)
 
         new_folder_name_entry = tk.Entry(self.folder_creator_tab, textvariable=self.new_folder_name, width=30)
         new_folder_name_entry.grid(row=2, column=1, padx=5, pady=5)
 
-        number_of_subfolders_label = tk.Label(self.folder_creator_tab, text="Number of Subfolders:")
+        number_of_subfolders_label = tk.Label(self.folder_creator_tab, text="Number of Seasons:")
         number_of_subfolders_label.grid(row=3, column=0, sticky=tk.W)
 
         number_of_subfolders_entry = tk.Entry(self.folder_creator_tab, textvariable=self.number_of_subfolders, width=10)
         number_of_subfolders_entry.grid(row=3, column=1, padx=5, pady=5, sticky=tk.W)
 
+        special_season_label = tk.Label(self.folder_creator_tab, text="Special Season")
+        special_season_label.grid(row=4, column=0, sticky=tk.W)
+
+        special_season_check_button = tk.Checkbutton(self.folder_creator_tab, variable=self.check_var)
+        special_season_check_button.grid(row=4, column=1, padx=5, pady=5, sticky=tk.W)
+
         create_button = tk.Button(self.folder_creator_tab, text="Create Folders", command=self.create_folders)
-        create_button.grid(row=4, column=0, columnspan=3, pady=10)
+        create_button.grid(row=5, column=0, columnspan=3, pady=10)
 
         # YouTube to MP3 downloader tab
         self.youtube_downloader_tab = tk.Frame(self.content_frame)
@@ -251,6 +259,11 @@ class FileRenamerGUI:
 
         for i in range(1, number_of_subfolders + 1):
             subfolder_name = f"Season {i:02}"
+            subfolder_path = os.path.join(new_folder_path, subfolder_name)
+            os.makedirs(subfolder_path)
+
+        if self.check_var.get():
+            subfolder_name = f"Season 00"
             subfolder_path = os.path.join(new_folder_path, subfolder_name)
             os.makedirs(subfolder_path)
 
