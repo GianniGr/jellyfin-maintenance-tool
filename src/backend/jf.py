@@ -41,10 +41,10 @@ class FileRenamerGUI:
         folder_rename_button = tk.Button(side_menu, text="Folder Renamer", command=self.show_folder_rename)
         folder_rename_button.pack(pady=10)
 
-        mp3_rename_button = tk.Button(side_menu, text="MP3 Renamer", command=self.show_mp3_rename)
+        mp3_rename_button = tk.Button(side_menu, text="MP3 Name Renamer", command=self.show_mp3_rename)
         mp3_rename_button.pack(pady=10)
 
-        folder_creator_button = tk.Button(side_menu, text="Folder Creator", command=self.show_folder_creator)
+        folder_creator_button = tk.Button(side_menu, text="Show Creator", command=self.show_folder_creator)
         folder_creator_button.pack(pady=10)
 
         youtube_downloader_button = tk.Button(side_menu, text="YouTube to MP3", command=self.show_youtube_downloader)
