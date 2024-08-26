@@ -6,7 +6,7 @@ from pytubefix import YouTube
 class FileRenamerGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("File Manager")
+        self.root.title("Jellyfin Maintenance Tool")
 
 
         # Variables for folder renaming
@@ -251,6 +251,11 @@ class FileRenamerGUI:
 
         if not base_path or not new_folder_name or not number_of_subfolders:
             messagebox.showwarning("Warning", "Please fill in all fields.")
+            return
+
+        files = [f for f in os.listdir(base_path)]
+        if new_folder_name in files:
+            messagebox.showwarning("Warning", "Folder already exists.")
             return
 
         new_folder_path = os.path.join(base_path, new_folder_name)
