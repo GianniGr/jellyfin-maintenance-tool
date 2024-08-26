@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Jellyfin Maintenance Tool.iml" filepath="$PROJECT_DIR$/Jellyfin Maintenance Tool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/jellyfin-maintenance-tool.iml" filepath="$PROJECT_DIR$/.idea/jellyfin-maintenance-tool.iml" />
     </modules>
   </component>
 </project>
